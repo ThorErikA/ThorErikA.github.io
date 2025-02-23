@@ -3,136 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thor Asplund</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        function toggleMenu() {
-            document.getElementById('side-menu').classList.toggle('-translate-x-full');
+    <title>Your 3D Model Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
-    </script>
+
+        body {
+            background-color: #1a1a1a;
+            color: #ddd;
+            font-size: 16px;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            background-color: #121212;
+            padding: 20px;
+            transition: transform 0.3s ease;
+            transform: translateX(-100%);
+        }
+
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
+        .sidebar-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .sidebar nav ul {
+            list-style: none;
+            margin-top: 40px;
+        }
+
+        .sidebar nav ul li {
+            margin: 20px 0;
+        }
+
+        .sidebar nav ul li a {
+            text-decoration: none;
+            color: #ddd;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .sidebar nav ul li a:hover {
+            color: #00bcd4;
+        }
+
+        /* Main content styles */
+        .content {
+            margin-left: 0;
+            transition: margin-left 0.3s ease;
+            padding: 20px;
+        }
+
+        .content.open {
+            margin-left: 250px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            color: #fff;
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-container img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .download-btn {
+            background-color: #00bcd4;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .download-btn:hover {
+            background-color: #0097a7;
+        }
+
+        /* Background image */
+        body {
+            background-image: url('background.jpg'); /* Add your background image here */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .sidebar-btn {
+                font-size: 24px;
+            }
+
+            .content.open {
+                margin-left: 0;
+            }
+        }
+    </style>
 </head>
-<body class="bg-black text-white font-sans">
-
-    <!-- Sidebar -->
-    <div id="side-menu" class="fixed top-0 left-0 w-1/5 h-full bg-gray-800 transform -translate-x-full transition-transform duration-300 p-4">
-        <button onclick="toggleMenu()" class="text-2xl font-bold text-white mb-4">✖</button>
-        <img src="/w3images/avatar_smoke.jpg" alt="Avatar" class="w-full mb-4">
-        <ul>
-            <li><a href="#" class="text-xl py-4 block hover:bg-gray-700">Home</a></li>
-            <li><a href="#about" class="text-xl py-4 block hover:bg-gray-700">About</a></li>
-            <li><a href="#photos" class="text-xl py-4 block hover:bg-gray-700">Photos</a></li>
-            <li><a href="#contact" class="text-xl py-4 block hover:bg-gray-700">Contact</a></li>
-        </ul>
+<body>
+    <div id="sidebar" class="sidebar">
+        <button id="toggleSidebar" class="sidebar-btn">☰</button>
+        <nav>
+            <ul>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#download">Download Models</a></li>
+            </ul>
+        </nav>
     </div>
-
-    <!-- Navbar for small screens -->
-    <div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
-        <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
-            <a href="#" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
-            <a href="#about" class="w3-bar-item w3-button" style="width:25% !important">ABOUT</a>
-            <a href="#photos" class="w3-bar-item w3-button" style="width:25% !important">PHOTOS</a>
-            <a href="#contact" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>
-        </div>
-    </div>
-
-    <!-- Page Content -->
-    <div class="p-6" id="main">
-        <!-- Header/Home -->
-        <header class="text-center py-32 bg-black">
-            <h1 class="text-5xl font-bold">I'm John Doe.</h1>
-            <p class="text-xl">Photographer and Web Designer.</p>
-            <img src="/w3images/man_smoke.jpg" alt="Boy" class="w-2/3 mx-auto mt-8 rounded-lg">
-        </header>
-
-        <!-- About Section -->
-        <section id="about" class="my-16 max-w-4xl mx-auto text-gray-400">
-            <h2 class="text-3xl text-gray-300 mb-4">My Name</h2>
-            <p class="mb-4">Some text about me. I am a lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-
-            <h3 class="text-2xl text-gray-300 mb-4">My Skills</h3>
-            <p class="w-full text-lg">Photography</p>
-            <div class="w-full bg-gray-200 h-2 mb-4">
-                <div class="bg-gray-600 h-2" style="width: 95%"></div>
-            </div>
-
-            <p class="w-full text-lg">Web Design</p>
-            <div class="w-full bg-gray-200 h-2 mb-4">
-                <div class="bg-gray-600 h-2" style="width: 85%"></div>
-            </div>
-
-            <p class="w-full text-lg">Photoshop</p>
-            <div class="w-full bg-gray-200 h-2 mb-4">
-                <div class="bg-gray-600 h-2" style="width: 80%"></div>
-            </div>
-
-            <div class="flex justify-around my-8">
-                <div class="text-center">
-                    <span class="text-4xl font-bold block">11+</span>
-                    <p>Partners</p>
-                </div>
-                <div class="text-center">
-                    <span class="text-4xl font-bold block">55+</span>
-                    <p>Projects Done</p>
-                </div>
-                <div class="text-center">
-                    <span class="text-4xl font-bold block">89+</span>
-                    <p>Happy Clients</p>
-                </div>
-                <div class="text-center">
-                    <span class="text-4xl font-bold block">150+</span>
-                    <p>Meetings</p>
-                </div>
-            </div>
-
-            <button class="w-full bg-gray-700 py-3 text-lg rounded-lg hover:bg-gray-600">
-                <i class="fa fa-download"></i> Download Resume
-            </button>
+    
+    <div id="content" class="content">
+        <section id="about" class="section">
+            <h1>About Me</h1>
+            <p>This is where you can introduce yourself, talk about your experience, and explain your goals in game development and 3D modeling.</p>
         </section>
 
-        <!-- Portfolio Section -->
-        <section id="photos" class="my-16 text-center">
-            <h2 class="text-3xl text-gray-300 mb-8">My Photos</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                <img src="/w3images/wedding.jpg" alt="Photo 1" class="rounded-lg">
-                <img src="/w3images/rocks.jpg" alt="Photo 2" class="rounded-lg">
-                <img src="/w3images/sailboat.jpg" alt="Photo 3" class="rounded-lg">
+        <section id="gallery" class="section">
+            <h1>Gallery</h1>
+            <div class="gallery-container">
+                <!-- Add your 3D model images here -->
+                <img src="model1.jpg" alt="Model 1">
+                <img src="model2.jpg" alt="Model 2">
+                <!-- More images can be added here -->
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="my-16 text-gray-400">
-            <h2 class="text-3xl text-gray-300 mb-4">Contact Me</h2>
-            <form action="/action_page.php" method="POST">
-                <div class="mb-4">
-                    <label for="name" class="text-lg">Name</label>
-                    <input type="text" id="name" name="name" class="w-full p-3 mt-2 rounded-lg bg-gray-700 text-white" required>
-                </div>
-                <div class="mb-4">
-                    <label for="email" class="text-lg">Email</label>
-                    <input type="email" id="email" name="email" class="w-full p-3 mt-2 rounded-lg bg-gray-700 text-white" required>
-                </div>
-                <div class="mb-4">
-                    <label for="subject" class="text-lg">Subject</label>
-                    <input type="text" id="subject" name="subject" class="w-full p-3 mt-2 rounded-lg bg-gray-700 text-white" required>
-                </div>
-                <div class="mb-4">
-                    <label for="message" class="text-lg">Message</label>
-                    <textarea id="message" name="message" class="w-full p-3 mt-2 rounded-lg bg-gray-700 text-white" required></textarea>
-                </div>
-                <button type="submit" class="w-full bg-gray-700 py-3 rounded-lg hover:bg-gray-600 text-white">
-                    <i class="fa fa-paper-plane"></i> Send Message
-                </button>
-            </form>
+        <section id="download" class="section">
+            <h1>Download 3D Models</h1>
+            <p>You can download the 3D models I've created for use in your projects.</p>
+            <a href="model1.obj" download class="download-btn">Download Model 1</a>
+            <a href="model2.obj" download class="download-btn">Download Model 2</a>
         </section>
-
-        <!-- Footer -->
-        <footer class="w-full py-8 bg-black text-center text-gray-400">
-            <i class="fa fa-facebook-official hover:text-white mr-4"></i>
-            <i class="fa fa-instagram hover:text-white mr-4"></i>
-            <i class="fa fa-twitter hover:text-white mr-4"></i>
-            <p class="mt-4">Powered by Tailwind CSS</p>
-        </footer>
     </div>
 
+    <script>
+        // Sidebar toggle functionality
+        const sidebar = document.getElementById('sidebar');
+        const content = document.getElementById('content');
+        const toggleSidebar = document.getElementById('toggleSidebar');
+
+        toggleSidebar.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            content.classList.toggle('open');
+        });
+    </script>
 </body>
 </html>
