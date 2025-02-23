@@ -3,219 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your 3D Model Portfolio</title>
+    <title>Thor Erik Asplund | Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
-        * {
+        :root {
+            --bg-color: #0a0a0a;
+            --text-color: #ffffff;
+            --accent-color: #1db954;
+            --font-family: 'Arial', sans-serif;
+        }
+        
+        body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Helvetica Neue', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-family);
+            text-align: center;
+            transition: background-color 0.3s, color 0.3s;
+            padding-top: 60px; /* Added space for the fixed header */
         }
-
-        body {
-            background-color: #121212;
-            color: #e0e0e0;
-            font-size: 18px;
-            line-height: 1.6;
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
         }
-
-        /* Sidebar */
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            flex: 1;
+            text-align: center;
+        }
+        
         .sidebar {
             position: fixed;
-            top: 0;
             left: -250px;
+            top: 60px; /* Adjusted to account for header */
             width: 250px;
             height: 100%;
-            background-color: #1c1c1c;
-            padding: 20px;
-            transition: all 0.3s ease;
+            background-color: #121212;
+            padding-top: 20px; /* Adjusted to have space from the top */
+            transition: 0.3s;
+            z-index: 1100;
         }
-
-        .sidebar.open {
-            left: 0;
-        }
-
-        .sidebar-btn {
-            position: absolute;
-            top: 20px;
-            right: -50px;
-            background-color: #1c1c1c;
-            color: #fff;
-            border: none;
-            font-size: 30px;
-            cursor: pointer;
+        
+        .sidebar a {
+            display: block;
             padding: 15px;
-            border-radius: 5px;
-        }
-
-        .sidebar nav ul {
-            margin-top: 40px;
-            list-style: none;
-        }
-
-        .sidebar nav ul li {
-            margin-bottom: 20px;
-        }
-
-        .sidebar nav ul li a {
+            color: var(--text-color);
             text-decoration: none;
-            color: #ddd;
             font-size: 18px;
-            padding: 5px 15px;
+        }
+        
+        .sidebar a:hover {
+            background-color: #1a1a1a;
+        }
+        
+        .sidebar .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 25px;
+            cursor: pointer;
+            color: var(--text-color);
+            background: none;
+            border: none;
+        }
+        
+        .sidebar-toggle {
+            background-color: var(--accent-color);
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
             border-radius: 5px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s;
+            z-index: 1050;
         }
-
-        .sidebar nav ul li a:hover {
-            background-color: #444;
+        
+        .sidebar-toggle:hover {
+            background-color: #17a744;
         }
-
-        /* Content */
-        .content {
-            margin-left: 0;
-            transition: margin-left 0.3s ease;
+        
+        .toggle-container {
+            flex: 1;
+            text-align: right;
+        }
+        
+        .toggle-button {
+            background-color: var(--accent-color);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            color: black;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .toggle-button:hover {
+            background-color: #17a744;
+        }
+        
+        #hero {
+            padding: 100px 0; /* Added padding to give space below the header */
+            background-color: #121212;
+        }
+        
+        #hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        
+        #portfolio {
+            padding: 40px 20px;
+        }
+        
+        #product-highlight {
+            padding: 40px 20px;
+            background-color: #121212;
+        }
+        
+        footer {
             padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
         }
-
-        .content.open {
-            margin-left: 250px;
-        }
-
-        .section {
-            margin-bottom: 40px;
-        }
-
-        h1 {
-            font-size: 32px;
-            color: #fff;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #444;
-            padding-bottom: 10px;
-        }
-
-        p {
-            font-size: 18px;
-            color: #bbb;
-        }
-
-        /* Gallery */
-        .gallery-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-            padding-top: 20px;
-        }
-
-        .gallery-container img {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-container img:hover {
-            transform: scale(1.05);
-        }
-
-        /* Download button */
-        .download-btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background-color: #00bcd4;
-            color: #fff;
-            font-size: 18px;
-            border-radius: 5px;
-            text-decoration: none;
-            margin-top: 20px;
-            transition: background-color 0.3s ease;
-        }
-
-        .download-btn:hover {
-            background-color: #0097a7;
-        }
-
-        /* Background Image */
-        body {
-            background-image: url('background.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .sidebar {
-                left: 0;
-                width: 200px;
-            }
-
-            .sidebar-btn {
-                right: -40px;
-                font-size: 25px;
-            }
-
-            .content.open {
-                margin-left: 0;
-            }
-
-            .gallery-container {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            }
-        }
+        
     </style>
 </head>
 <body>
-
-    <!-- Sidebar -->
-    <div id="sidebar" class="sidebar">
-        <button id="toggleSidebar" class="sidebar-btn">☰</button>
-        <nav>
-            <ul>
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#download">Download Models</a></li>
-            </ul>
-        </nav>
+    <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+        <a href="#portfolio">Portfolio</a>
     </div>
-
-    <!-- Content -->
-    <div id="content" class="content">
-        <!-- About Me Section -->
-        <section id="about" class="section">
-            <h1>About Me</h1>
-            <p>Hello! I'm a passionate 3D modeler and game developer. I specialize in creating 3D models for games and other interactive experiences. On this site, you can explore some of my work, learn more about me, and even download my 3D models for your own projects.</p>
-        </section>
-
-        <!-- Gallery Section -->
-        <section id="gallery" class="section">
-            <h1>Gallery</h1>
-            <div class="gallery-container">
-                <img src="model1.jpg" alt="Model 1">
-                <img src="model2.jpg" alt="Model 2">
-                <img src="model3.jpg" alt="Model 3">
-                <img src="model4.jpg" alt="Model 4">
-            </div>
-        </section>
-
-        <!-- Download Section -->
-        <section id="download" class="section">
-            <h1>Download 3D Models</h1>
-            <p>Click below to download the 3D models I've created for use in your projects. You can find different file formats to suit your needs.</p>
-            <a href="model1.obj" download class="download-btn">Download Model 1</a>
-            <a href="model2.obj" download class="download-btn">Download Model 2</a>
-        </section>
-    </div>
-
+    
+    <header>
+        <div style="flex: 1; text-align: left;">
+            <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+        </div>
+        <div class="logo">Thor Erik Asplund</div>
+        <div class="toggle-container">
+            <button class="toggle-button" onclick="toggleTheme()">Toggle Dark/Light Mode</button>
+        </div>
+    </header>
+    
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Welcome to My Portfolio</h1>
+            <p>Showcasing creativity and innovation.</p>
+        </div>
+    </section>
+    
+    <section id="portfolio">
+        <h2>Portfolio</h2>
+        <div class="gallery">
+            <!-- Portfolio items go here -->
+        </div>
+    </section>
+    
+    <section id="product-highlight">
+        <h2>Featured Product</h2>
+        <div class="product-showcase">
+            <img src="product-image.jpg" alt="Featured Product">
+            <p>Amazing product description goes here. Highlighting key features and why it's special.</p>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Thor Erik Asplund. All rights reserved.</p>
+    </footer>
+    
     <script>
-        // Sidebar toggle functionality
-        const sidebar = document.getElementById('sidebar');
-        const content = document.getElementById('content');
-        const toggleSidebar = document.getElementById('toggleSidebar');
-
-        toggleSidebar.addEventListener('click', () => {
-            sidebar.classList.toggle('open');
-            content.classList.toggle('open');
-        });
-    </script>
-
-</body>
-</html>
+        function toggleTheme() {
+            const root = document.documentElement;
+            const isDark = root.style.getPropertyValue('--bg-color') === '#ffffff';
+            if (isDark) {
+                root.style.setProperty('--bg-color', '#0a0a0a');
+                root.style.setProperty('--text-color', '#ffffff');
+            } else {
+                root.style.setProperty('--bg-color', '#ffffff');
+                root.style.setProperty('--text-color', '#000000');
+            }
+        }
+        
+        function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            if (sidebar.style.left === "0px") {
+                sidebar.style.left = "-250px";
+            } else {
+                sid
