@@ -5,10 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thor Asplund</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f0f0f0; /* Light background */
+            color: #333; /* Light text color */
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Dark Mode Styles */
+        body.dark {
+            background-color: #121212; /* Dark background */
+            color: #ddd; /* Dark text color */
+        }
+
+        nav {
+            transition: background-color 0.3s;
+        }
+
+        /* Dark mode styles for navbar */
+        body.dark nav {
+            background-color: #333;
+        }
+
+        .hover\:text-blue-500:hover {
+            color: #1d4ed8;
+        }
+
+        /* Button styling */
+        button {
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Styling for the dark mode switch button */
+        button:focus {
+            outline: none;
+        }
+    </style>
     <script>
         function toggleMenu() {
             document.getElementById('side-menu').classList.toggle('-translate-x-full');
         }
+
+        // Toggle Dark Mode
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark');
+            
+            // Toggle icon between moon and sun
+            const button = document.querySelector('button');
+            if (document.body.classList.contains('dark')) {
+                button.innerHTML = "🌞"; // Sun icon for light mode
+            } else {
+                button.innerHTML = "🌙"; // Moon icon for dark mode
+            }
+        }
+
+        // Optional: Remember the user's preference
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark');
+        }
+
+        // Store the preference in localStorage
+        window.addEventListener('beforeunload', () => {
+            if (document.body.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.removeItem('theme');
+            }
+        });
     </script>
 </head>
 <body class="bg-gray-100 text-gray-900">
@@ -19,8 +87,8 @@
             <li><a href="#about" class="hover:text-blue-500">About</a></li>
             <li><a href="#projects" class="hover:text-blue-500">Projects</a></li>
             <li><a href="#contact" class="hover:text-blue-500">Contact</a></li>
-            <li><a href="https://youtube.com" target="_blank" class="hover:text-blue-500">YouTube</a></li>
-            <li><a href="https://google.com" target="_blank" class="hover:text-blue-500">Google</a></li>
+            <li><a href="https://youtube.com" target="_blank" class="hover:text-purple-500">YouTube</a></li>
+            <li><a href="https://google.com" target="_blank" class="hover:text-purple-500">Google</a></li>
             <li><a href="https://office.com" target="_blank" class="hover:text-purple-500">Office</a></li>
         </ul>
     </div>
@@ -34,6 +102,10 @@
             <li><a href="#projects" class="hover:text-blue-500">Projects</a></li>
             <li><a href="#contact" class="hover:text-blue-500">Contact</a></li>
         </ul>
+        <!-- Dark Mode Toggle Button -->
+        <button onclick="toggleDarkMode()" class="text-lg font-bold py-2 px-4 rounded-full border-2 border-gray-600 hover:bg-gray-200 dark:border-gray-300 dark:hover:bg-gray-600 dark:text-white">
+            🌙
+        </button>
     </nav>
     
     <!-- Hero Section -->
@@ -68,8 +140,8 @@
         <p class="text-gray-700">Email: thor.aspund@outlook.dk</p>
         <p class="text-gray-700">Website: https://thorerika.github.io./</p>
     </section>
-    <!-- MineCraft -->
-    <section id="contact" class="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg my-6">
+    <!-- Minecraft Section -->
+    <section id="minecraft" class="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg my-6">
         <h2 class="text-2xl font-bold mb-2">Server IP (Java)</h2>
         <p class="text-gray-700">8y12-udD6.aternos.me</p>
     </section>
