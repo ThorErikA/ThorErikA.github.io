@@ -5,184 +5,134 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thor Asplund</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            background-color: #f0f0f0; /* Light background */
-            color: #333; /* Light text color */
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        /* Dark Mode Styles */
-        body.dark {
-            background-color: #121212; /* Dark background */
-            color: #ddd; /* Dark text color */
-        }
-
-        nav {
-            transition: background-color 0.3s;
-        }
-
-        /* Dark mode styles for navbar */
-        body.dark nav {
-            background-color: #333;
-        }
-
-        .hover\:text-blue-500:hover {
-            color: #1d4ed8;
-        }
-
-        /* Button styling */
-        button {
-            background-color: transparent;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: rgba(0, 0, 0, 0.1);
-        }
-
-        /* Styling for the dark mode switch button */
-        button:focus {
-            outline: none;
-        }
-
-        /* Toggle switch styles */
-        .toggle-switch {
-            position: relative;
-            width: 40px;
-            height: 20px;
-            background-color: #ddd;
-            border-radius: 9999px;
-            transition: background-color 0.3s;
-        }
-
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-            position: absolute;
-        }
-
-        .toggle-switch .slider {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 20px;
-            height: 20px;
-            background-color: white;
-            border-radius: 50%;
-            transition: transform 0.3s ease;
-        }
-
-        .toggle-switch input:checked + .slider {
-            transform: translateX(20px); /* Move the slider to the right when checked */
-        }
-
-        .toggle-switch input:checked {
-            background-color: #4CAF50; /* Change background when checked */
-        }
-
-        .toggle-switch input:checked + .slider {
-            background-color: white;
-        }
-    </style>
     <script>
         function toggleMenu() {
             document.getElementById('side-menu').classList.toggle('-translate-x-full');
         }
-
-        // Toggle Dark Mode
-        function toggleDarkMode() {
-            const isChecked = document.getElementById('dark-toggle').checked;
-            if (isChecked) {
-                document.body.classList.add('dark');
-            } else {
-                document.body.classList.remove('dark');
-            }
-
-            // Update localStorage
-            if (isChecked) {
-                localStorage.setItem('theme', 'dark');
-            } else {
-                localStorage.removeItem('theme');
-            }
-        }
-
-        // Check localStorage for saved theme preference
-        if (localStorage.getItem('theme') === 'dark') {
-            document.body.classList.add('dark');
-            document.getElementById('dark-toggle').checked = true;
-        }
     </script>
 </head>
-<body class="bg-gray-100 text-gray-900">
+<body class="bg-black text-white font-sans">
+
     <!-- Sidebar -->
-    <div id="side-menu" class="fixed top-0 left-0 w-64 h-full bg-white shadow-md transform -translate-x-full transition-transform duration-300 p-4">
-        <button onclick="toggleMenu()" class="text-xl font-bold">Close ✖</button>
-        <ul class="mt-4 space-y-4">
-            <li><a href="#about" class="hover:text-blue-500">About</a></li>
-            <li><a href="#projects" class="hover:text-blue-500">Projects</a></li>
-            <li><a href="#contact" class="hover:text-blue-500">Contact</a></li>
-            <li><a href="https://youtube.com" target="_blank" class="hover:text-purple-500">YouTube</a></li>
-            <li><a href="https://google.com" target="_blank" class="hover:text-purple-500">Google</a></li>
-            <li><a href="https://office.com" target="_blank" class="hover:text-purple-500">Office</a></li>
+    <div id="side-menu" class="fixed top-0 left-0 w-1/5 h-full bg-gray-800 transform -translate-x-full transition-transform duration-300 p-4">
+        <button onclick="toggleMenu()" class="text-2xl font-bold text-white mb-4">✖</button>
+        <img src="/w3images/avatar_smoke.jpg" alt="Avatar" class="w-full mb-4">
+        <ul>
+            <li><a href="#" class="text-xl py-4 block hover:bg-gray-700">Home</a></li>
+            <li><a href="#about" class="text-xl py-4 block hover:bg-gray-700">About</a></li>
+            <li><a href="#photos" class="text-xl py-4 block hover:bg-gray-700">Photos</a></li>
+            <li><a href="#contact" class="text-xl py-4 block hover:bg-gray-700">Contact</a></li>
         </ul>
     </div>
-    
-    <!-- Navbar -->
-    <nav class="bg-white shadow-md p-4 flex justify-between items-center">
-        <button onclick="toggleMenu()" class="text-xl font-bold">☰</button>
-        <h1 class="text-xl font-bold">Thor Asplund</h1>
-        <ul class="flex space-x-4">
-            <li><a href="#about" class="hover:text-blue-500">About</a></li>
-            <li><a href="#projects" class="hover:text-blue-500">Projects</a></li>
-            <li><a href="#contact" class="hover:text-blue-500">Contact</a></li>
-        </ul>
 
-        <!-- Dark Mode Toggle -->
-        <div class="flex items-center space-x-2">
-            <span class="text-lg">🌙</span>
-            <label for="dark-toggle" class="inline-flex relative items-center cursor-pointer">
-                <input type="checkbox" id="dark-toggle" class="sr-only" onchange="toggleDarkMode()">
-                <div class="toggle-switch">
-                    <div class="slider"></div>
+    <!-- Navbar for small screens -->
+    <div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+        <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
+            <a href="#" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
+            <a href="#about" class="w3-bar-item w3-button" style="width:25% !important">ABOUT</a>
+            <a href="#photos" class="w3-bar-item w3-button" style="width:25% !important">PHOTOS</a>
+            <a href="#contact" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>
+        </div>
+    </div>
+
+    <!-- Page Content -->
+    <div class="p-6" id="main">
+        <!-- Header/Home -->
+        <header class="text-center py-32 bg-black">
+            <h1 class="text-5xl font-bold">I'm John Doe.</h1>
+            <p class="text-xl">Photographer and Web Designer.</p>
+            <img src="/w3images/man_smoke.jpg" alt="Boy" class="w-2/3 mx-auto mt-8 rounded-lg">
+        </header>
+
+        <!-- About Section -->
+        <section id="about" class="my-16 max-w-4xl mx-auto text-gray-400">
+            <h2 class="text-3xl text-gray-300 mb-4">My Name</h2>
+            <p class="mb-4">Some text about me. I am a lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+
+            <h3 class="text-2xl text-gray-300 mb-4">My Skills</h3>
+            <p class="w-full text-lg">Photography</p>
+            <div class="w-full bg-gray-200 h-2 mb-4">
+                <div class="bg-gray-600 h-2" style="width: 95%"></div>
+            </div>
+
+            <p class="w-full text-lg">Web Design</p>
+            <div class="w-full bg-gray-200 h-2 mb-4">
+                <div class="bg-gray-600 h-2" style="width: 85%"></div>
+            </div>
+
+            <p class="w-full text-lg">Photoshop</p>
+            <div class="w-full bg-gray-200 h-2 mb-4">
+                <div class="bg-gray-600 h-2" style="width: 80%"></div>
+            </div>
+
+            <div class="flex justify-around my-8">
+                <div class="text-center">
+                    <span class="text-4xl font-bold block">11+</span>
+                    <p>Partners</p>
                 </div>
-            </label>
-            <span class="text-lg">🌞</span>
-        </div>
-    </nav>
-    
-    <!-- Hero Section -->
-    <header class="h-64 flex items-center justify-center text-center">
-        <h2 class="text-3xl font-semibold">Welcome to My Website</h2>
-    </header>
-    
-    <!-- About Section -->
-    <section id="about" class="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg my-6">
-        <h2 class="text-2xl font-bold mb-2">About Me</h2>
-        <p class="text-gray-700">I'm a 3D Graphic Designer, Scripter and Gamedeveloper</p>
-    </section>
-    
-    <!-- Projects Section -->
-    <section id="projects" class="max-w-4xl mx-auto p-6 my-6">
-        <h2 class="text-2xl font-bold mb-4">Currently Working On</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="p-4 bg-white shadow-md rounded-lg">
-                <h3 class="text-xl font-semibold">Project 1</h3>
-                <p class="text-gray-600">Websites</p>
+                <div class="text-center">
+                    <span class="text-4xl font-bold block">55+</span>
+                    <p>Projects Done</p>
+                </div>
+                <div class="text-center">
+                    <span class="text-4xl font-bold block">89+</span>
+                    <p>Happy Clients</p>
+                </div>
+                <div class="text-center">
+                    <span class="text-4xl font-bold block">150+</span>
+                    <p>Meetings</p>
+                </div>
             </div>
-            <div class="p-4 bg-white shadow-md rounded-lg">
-                <h3 class="text-xl font-semibold">Project 2</h3>
-                <p class="text-gray-600">3D Designs</p>
+
+            <button class="w-full bg-gray-700 py-3 text-lg rounded-lg hover:bg-gray-600">
+                <i class="fa fa-download"></i> Download Resume
+            </button>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="photos" class="my-16 text-center">
+            <h2 class="text-3xl text-gray-300 mb-8">My Photos</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <img src="/w3images/wedding.jpg" alt="Photo 1" class="rounded-lg">
+                <img src="/w3images/rocks.jpg" alt="Photo 2" class="rounded-lg">
+                <img src="/w3images/sailboat.jpg" alt="Photo 3" class="rounded-lg">
             </div>
-        </div>
-    </section>
-    
-    <!-- Contact Section -->
-    <section id="contact" class="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg my-6">
-        <h2 class="text-2xl font-bold mb-2">Contact Me</h2>
-        <p class="text-gray-700">Email: thor.aspund@outlook.dk</p>
-        <p class="text-gray-700">Website: https://thorerika.github.io./</p>
-    </section>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="my-16 text-gray-400">
+            <h2 class="text-3xl text-gray-300 mb-4">Contact Me</h2>
+            <form action="/action_page.php" method="POST">
+                <div class="mb-4">
+                    <label for="name" class="text-lg">Name</label>
+                    <input type="text" id="name" name="name" class="w-full p-3 mt-2 rounded-lg bg-gray-700 text-white" required>
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="text-lg">Email</label>
+                    <input type="email" id="email" name="email" class="w-full p-3 mt-2 rounded-lg bg-gray-700 text-white" required>
+                </div>
+                <div class="mb-4">
+                    <label for="subject" class="text-lg">Subject</label>
+                    <input type="text" id="subject" name="subject" class="w-full p-3 mt-2 rounded-lg bg-gray-700 text-white" required>
+                </div>
+                <div class="mb-4">
+                    <label for="message" class="text-lg">Message</label>
+                    <textarea id="message" name="message" class="w-full p-3 mt-2 rounded-lg bg-gray-700 text-white" required></textarea>
+                </div>
+                <button type="submit" class="w-full bg-gray-700 py-3 rounded-lg hover:bg-gray-600 text-white">
+                    <i class="fa fa-paper-plane"></i> Send Message
+                </button>
+            </form>
+        </section>
+
+        <!-- Footer -->
+        <footer class="w-full py-8 bg-black text-center text-gray-400">
+            <i class="fa fa-facebook-official hover:text-white mr-4"></i>
+            <i class="fa fa-instagram hover:text-white mr-4"></i>
+            <i class="fa fa-twitter hover:text-white mr-4"></i>
+            <p class="mt-4">Powered by Tailwind CSS</p>
+        </footer>
+    </div>
+
 </body>
 </html>
