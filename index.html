@@ -3,202 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thor Erik Asplund | Portfolio</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Thor Erik Asplund - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        :root {
-            --bg-color: #0a0a0a;
-            --text-color: #ffffff;
-            --accent-color: #1db954;
-            --font-family: 'Arial', sans-serif;
-        }
-        
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: var(--font-family);
-            text-align: center;
-            transition: background-color 0.3s, color 0.3s;
-            padding-top: 60px; /* Added space for the fixed header */
-        }
-        
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.8);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-        }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            flex: 1;
-            text-align: center;
-        }
-        
-        .sidebar {
-            position: fixed;
-            left: -250px;
-            top: 60px; /* Adjusted to account for header */
-            width: 250px;
-            height: 100%;
-            background-color: #121212;
-            padding-top: 20px; /* Adjusted to have space from the top */
-            transition: 0.3s;
-            z-index: 1100;
-        }
-        
-        .sidebar a {
-            display: block;
-            padding: 15px;
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 18px;
-        }
-        
-        .sidebar a:hover {
-            background-color: #1a1a1a;
-        }
-        
-        .sidebar .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 25px;
-            cursor: pointer;
-            color: var(--text-color);
-            background: none;
-            border: none;
-        }
-        
-        .sidebar-toggle {
-            background-color: var(--accent-color);
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-            z-index: 1050;
-        }
-        
-        .sidebar-toggle:hover {
-            background-color: #17a744;
-        }
-        
-        .toggle-container {
-            flex: 1;
-            text-align: right;
-        }
-        
-        .toggle-button {
-            background-color: var(--accent-color);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            color: black;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
-        
-        .toggle-button:hover {
-            background-color: #17a744;
-        }
-        
-        #hero {
-            padding: 100px 0; /* Added padding to give space below the header */
-            background-color: #121212;
-        }
-        
-        #hero h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
-        
-        #portfolio {
-            padding: 40px 20px;
-        }
-        
-        #product-highlight {
-            padding: 40px 20px;
-            background-color: #121212;
-        }
-        
-        footer {
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-        
-    </style>
 </head>
 <body>
-    <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
-    <div class="sidebar" id="sidebar">
-        <button class="close-btn" onclick="toggleSidebar()">&times;</button>
-        <a href="#portfolio">Portfolio</a>
-    </div>
-    
     <header>
-        <div style="flex: 1; text-align: left;">
-            <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
-        </div>
-        <div class="logo">Thor Erik Asplund</div>
-        <div class="toggle-container">
-            <button class="toggle-button" onclick="toggleTheme()">Toggle Dark/Light Mode</button>
-        </div>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
-    
-    <section id="hero">
-        <div class="hero-content">
+
+    <main>
+        <section id="hero">
             <h1>Welcome to My Portfolio</h1>
-            <p>Showcasing creativity and innovation.</p>
-        </div>
-    </section>
-    
-    <section id="portfolio">
-        <h2>Portfolio</h2>
-        <div class="gallery">
-            <!-- Portfolio items go here -->
-        </div>
-    </section>
-    
-    <section id="product-highlight">
-        <h2>Featured Product</h2>
-        <div class="product-showcase">
-            <img src="product-image.jpg" alt="Featured Product">
-            <p>Amazing product description goes here. Highlighting key features and why it's special.</p>
-        </div>
-    </section>
-    
+            <p>Explore my work and skills as a game developer and 3D artist.</p>
+        </section>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <p>I'm Thor Erik Asplund, a passionate game developer and 3D artist. I create immersive experiences and solve tech challenges.</p>
+        </section>
+
+        <section id="projects">
+            <h2>Featured Projects</h2>
+            <div class="project">
+                <h3>Project Name</h3>
+                <p>Short description of the project.</p>
+            </div>
+            <!-- Repeat project divs as needed -->
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Feel free to reach out to me via email at thor@myportfolio.com</p>
+        </section>
+    </main>
+
     <footer>
-        <p>&copy; 2025 Thor Erik Asplund. All rights reserved.</p>
+        <p>&copy; 2025 Thor Erik Asplund. All Rights Reserved.</p>
     </footer>
-    
-    <script>
-        function toggleTheme() {
-            const root = document.documentElement;
-            const isDark = root.style.getPropertyValue('--bg-color') === '#ffffff';
-            if (isDark) {
-                root.style.setProperty('--bg-color', '#0a0a0a');
-                root.style.setProperty('--text-color', '#ffffff');
-            } else {
-                root.style.setProperty('--bg-color', '#ffffff');
-                root.style.setProperty('--text-color', '#000000');
-            }
-        }
-        
-        function toggleSidebar() {
-            const sidebar = document.getElementById("sidebar");
-            if (sidebar.style.left === "0px") {
-                sidebar.style.left = "-250px";
-            } else {
-                sid
+
+    <script src="script.js"></script>
+</body>
+</html>
