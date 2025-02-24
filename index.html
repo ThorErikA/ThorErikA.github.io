@@ -3,51 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Thor Erik Asplund - Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Personal Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 80%;
+            max-width: 900px;
+            padding: 20px;
+            background: #1e1e1e;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .widget {
+            background: #252525;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .todo-list input {
+            width: calc(100% - 40px);
+            padding: 8px;
+            margin-right: 5px;
+            border: none;
+            border-radius: 5px;
+        }
+        .todo-list button {
+            padding: 8px;
+            border: none;
+            background: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .links a {
+            color: #007bff;
+            display: block;
+            text-decoration: none;
+            margin: 5px 0;
+        }
+        .collapsible {
+            background: #333;
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            border: none;
+            text-align: left;
+            outline: none;
+            width: 100%;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .content {
+            display: none;
+            padding: 10px;
+            background: #252525;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div class="container">
+        <h1>Personal Dashboard</h1>
+        
+        <button class="collapsible">To-Do List</button>
+        <div class="content widget todo-list">
+            <h2>To-Do List</h2>
+            <input type="text" id="todoInput" placeholder="Add a new task...">
+            <button onclick="addTodo()">Add</button>
+            <ul id="todoList"></ul>
+        </div>
 
-    <main>
-        <section id="hero">
-            <h1>Welcome to My Portfolio</h1>
-            <p>Explore my work and skills as a game developer and 3D artist.</p>
-        </section>
+        <button class="collapsible">Quick Notes</button>
+        <div class="content widget notes">
+            <h2>Quick Notes</h2>
+            <textarea id="notes" rows="4" style="width: 100%;"></textarea>
+        </div>
 
-        <section id="about">
-            <h2>About Me</h2>
-            <p>I'm Thor Erik Asplund, a passionate game developer and 3D artist. I create immersive experiences and solve tech challenges.</p>
-        </section>
+        <button class="collapsible">Useful Links</button>
+        <div class="content widget links">
+            <h2>Useful Links</h2>
+            <a href="https://github.com" target="_blank">GitHub</a>
+            <a href="https://chat.openai.com" target="_blank">ChatGPT</a>
+        </div>
 
-        <section id="projects">
-            <h2>Featured Projects</h2>
-            <div class="project">
-                <h3>Project Name</h3>
-                <p>Short description of the project.</p>
-            </div>
-            <!-- Repeat project divs as needed -->
-        </section>
+        <button class="collapsible">Gallery</button>
+        <div class="content widget gallery">
+            <h2>Gallery</h2>
+            <p>Showcase your images or projects here.</p>
+            <img src="https://via.placeholder.com/150" alt="Placeholder Image" style="width:100%; border-radius: 5px;">
+        </div>
+    </div>
 
-        <section id="contact">
-            <h2>Contact</h2>
-            <p>Feel free to reach out to me via email at thor@myportfolio.com</p>
-        </section>
-    </main>
+    <script>
+        function addTodo() {
+            let input = document.getElementById("todoInput");
+            let list = document.getElementById("todoList");
+            if (input.value.trim() !== "") {
+                let li = document.createElement("li");
+                li.textContent = input.value;
+                li.style.cursor = "pointer";
+                li.onclick = () => li.remove();
+                list.appendChild(li);
+                input.value = "";
+            }
+        }
 
-    <footer>
-        <p>&copy; 2025 Thor Erik Asplund. All Rights Reserved.</p>
-    </footer>
-
-    <script src="script.js"></script>
+        let coll = document.getElementsByClassName("collapsible");
+        for (let i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                let content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        }
+    </script>
 </body>
 </html>
