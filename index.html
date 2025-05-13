@@ -1,24 +1,166 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Link Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0d0d0d;
+      --text-color: #eaeaea;
+      --accent-color: #1e90ff;
+      --button-bg: #1a1a1a;
+      --button-hover: #2a2a2a;
+      --font-main: 'Inter', sans-serif;
+      --font-alt: 'Poppins', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 4rem 1rem 2rem;
+    }
+
+    header h1 {
+      font-family: var(--font-alt);
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1rem;
+      color: #aaaaaa;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      gap: 1.2rem;
+      flex: 1;
+    }
+
+    .link-button {
+      background-color: var(--button-bg);
+      border: 1px solid #2a2a2a;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      text-align: left;
+      width: 100%;
+      max-width: 420px;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .link-button:hover {
+      background-color: var(--button-hover);
+      transform: scale(1.02);
+      border-color: var(--accent-color);
+    }
+
+    .link-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .link-subtitle {
+      font-size: 0.9rem;
+      color: #888;
+      margin-top: 0.25rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.85rem;
+      color: #666;
+      background: #111;
+      position: sticky;
+      bottom: 0;
+      width: 100%;
+      animation: fadeUp 0.5s ease-out;
+    }
+
+    @keyframes fadeUp {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      .link-button {
+        padding: 0.9rem 1.2rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div>
-        <h1>Billeder</h1>
-        <div>
-            <h2>Brandenburger Tor</h2>
-            <img src="https://th.bing.com/th/id/R.a126f9d15aca1a7fa83c9d0c3e2d2d29?rik=XIYjqToTsu2Okg&pid=ImgRaw&r=0" alt="A Picture1">
-            <img src="https://goeasyberlin.de/wp-content/uploads/2016/11/Brandenburg_Gate-Cold-War.jpg" alt="A Picture2">
-            <img src="https://i.pinimg.com/originals/bc/4b/50/bc4b5045dd41cf126f0e0c76c01d8fec.jpg" alt="A Picture4">
-            <h2>Anhalter Bahnhof</h2>
-            <img src="https://www.berlin.de/binaries/asset/image_assets/6167612/ratio_2_1/1731659961/1000x500/ " alt="A Picture5">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/68/Anhalter_Bahnhof%2C_Berlin_1900.png " alt="A Picture6">
-            <img src="https://archaeology-travel.com/cdn-cgi/image/quality=90,format=auto,onerror=redirect,metadata=none/wp-content/uploads/elementor/thumbs/anhalter-bahnhof-model-qggwswndslr82sni0493844cvpr9m0gahuvr00npys.jpg " alt="A Picture7">
-            <img src="https://www.berlin.de/geschichte/historische-bilder/suche/_img/5/big_540.jpg" alt="A Pic">
-        </div>
-    </div>
+  <header>
+    <h1>My Links</h1>
+    <p>Curated destinations</p>
+  </header>
+
+  <main>
+    <a href="https://www.napkin.ai/" class="link-button">
+      <span class="link-title">NapkinAi</span>
+      <span class="link-subtitle">Visuals from Text using AI</span>
+    </a>
+    <a href="https://m365.cloud.microsoft/?auth=2" class="link-button">
+      <span class="link-title">Microsoft 365</span>
+      <span class="link-subtitle">(Office 365)</span>
+    </a>
+    <a href="https://gamma.app/" class="link-button">
+        <span class="link-title">Gamma</span>
+        <span class="link-subtitle">Presentations with AI</span>
+      </a>
+    <a href="https://www.chatedu.io/en" class="link-button">
+      <span class="link-title">ChatEDU</span>
+      <span class="link-subtitle">Currently doesn't work</span>
+    </a>
+    <a href="https://clicktheredbutton.com/" class="link-button">
+        <span class="link-title">Click The Red Button</span>
+        <span class="link-subtitle">If you are bored</span>
+      </a>
+    <a href="https://novoresume.com/" class="link-button">
+        <span class="link-title">NovoResume</span>
+        <span class="link-subtitle">Resume Builder using AI</span>
+    </a>
+  </main>
+
+  <footer>
+    &copy; 2025 Your Name. <a href="thor.asplund@outlook.dk" style="color: var(--accent-color); text-decoration: none;">Contact</a>
+  </footer>
 </body>
 </html>
