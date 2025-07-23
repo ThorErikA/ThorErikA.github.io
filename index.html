@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,24 +6,6 @@
   <title>Link Hub</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    #searchInput {
-    width: 100%;
-    max-width: 420px;
-    padding: 0.75rem 1rem;
-    margin-bottom: 1.5rem;
-    border-radius: 10px;
-    border: 1px solid #333;
-   background-color: #1a1a1a;
-    color: var(--text-color);
-   font-size: 1rem;
-   transition: border-color 0.2s ease;
-    }
-
-  #searchInput:focus {
-  outline: none;
-  border-color: var(--accent-color);
-}
-
     :root {
       --bg-color: #0d0d0d;
       --text-color: #eaeaea;
@@ -71,20 +52,42 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       padding: 2rem 1rem;
-      gap: 1.2rem;
       flex: 1;
+    }
+
+    #searchInput {
+      width: 100%;
+      max-width: 500px;
+      padding: 0.85rem 1.2rem;
+      margin-bottom: 2rem;
+      border-radius: 10px;
+      border: 1px solid #333;
+      background-color: #1a1a1a;
+      color: var(--text-color);
+      font-size: 1rem;
+      transition: border-color 0.2s ease;
+    }
+
+    #searchInput:focus {
+      outline: none;
+      border-color: var(--accent-color);
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.2rem;
+      width: 100%;
+      max-width: 1280px;
     }
 
     .link-button {
       background-color: var(--button-bg);
       border: 1px solid #2a2a2a;
-      padding: 1rem 1.5rem;
+      padding: 1rem 1.2rem;
       border-radius: 12px;
       text-align: left;
-      width: 100%;
-      max-width: 420px;
       transition: all 0.25s ease;
       cursor: pointer;
       text-decoration: none;
@@ -92,6 +95,7 @@
       display: flex;
       flex-direction: column;
       position: relative;
+      width: 100%;
     }
 
     .link-button:hover {
@@ -138,8 +142,10 @@
       header h1 {
         font-size: 2rem;
       }
-      .link-button {
-        padding: 0.9rem 1.2rem;
+
+      #searchInput {
+        max-width: 100%;
+        font-size: 0.95rem;
       }
     }
   </style>
@@ -152,118 +158,111 @@
 
   <main>
     <input type="text" id="searchInput" placeholder="Search links..." />
-    <a href="https://chatgpt.com/" class="link-button">
+    <div class="link-grid">
+      <a href="https://chatgpt.com/" class="link-button">
         <span class="link-title">ChatGpt</span>
         <span class="link-subtitle">THE best AI tool out there right now</span>
-    </a>
-    <a href="https://www.perplexity.ai/" class="link-button">
-      <span class="link-title">Perplexity</span>
-      <span class="link-subtitle">Good Ai with good sources</span>
-    </a>
-    <a href="https://www.canva.com/" class="link-button">
-      <span class="link-title">Canva</span>
-      <span class="link-subtitle">Just a crazy tool for so many things</span>
-    </a>
-    <a href="https://www.napkin.ai/" class="link-button">
-      <span class="link-title">NapkinAi</span>
-      <span class="link-subtitle">Visuals from Text using AI</span>
-    </a>
-     <a href="https://scite.ai" class="link-button">
-        <span class="link-title">scite_</span>
-        <span class="link-subtitle">For finding academic resources</span>
       </a>
-    <a href="https://m365.cloud.microsoft/?auth=2" class="link-button">
-      <span class="link-title">Microsoft 365</span>
-      <span class="link-subtitle">(Office 365)</span>
-    </a>
-    <a href="https://gamma.app/" class="link-button">
+      <a href="https://www.canva.com/" class="link-button">
+        <span class="link-title">Canva</span>
+        <span class="link-subtitle">Just a crazy tool for so many things</span>
+      </a>
+      <a href="https://www.napkin.ai/" class="link-button">
+        <span class="link-title">NapkinAi</span>
+        <span class="link-subtitle">Visuals from Text using AI</span>
+      </a>
+      <a href="https://m365.cloud.microsoft/?auth=2" class="link-button">
+        <span class="link-title">Microsoft 365</span>
+        <span class="link-subtitle">(Office 365)</span>
+      </a>
+      <a href="https://gamma.app/" class="link-button">
         <span class="link-title">Gamma</span>
         <span class="link-subtitle">Presentations with AI</span>
       </a>
-    
-    <a href="https://novoresume.com/" class="link-button">
+      <a href="https://novoresume.com/" class="link-button">
         <span class="link-title">NovoResume</span>
         <span class="link-subtitle">Resume Builder using AI</span>
-    </a>
-    <a href="https://leonardo.ai/" class="link-button">
+      </a>
+      <a href="https://leonardo.ai/" class="link-button">
         <span class="link-title">Leonardo AI</span>
         <span class="link-subtitle">Image Creator</span>
-    </a>
-    <a href="https://recraft.ai/" class="link-button">
+      </a>
+      <a href="https://recraft.ai/" class="link-button">
         <span class="link-title">Recraft Ai</span>
         <span class="link-subtitle">Image Generation tool</span>
-    </a>
-    <a href="https://10015.io/" class="link-button">
+      </a>
+      <a href="https://10015.io/" class="link-button">
         <span class="link-title">10015</span>
         <span class="link-subtitle">Just a lot of online tools</span>
-    </a>
-        <a href="https://chef.convex.dev" class="link-button">
+      </a>
+      <a href="https://chef.convex.dev" class="link-button">
         <span class="link-title">Chef</span>
         <span class="link-subtitle">Create full web apps</span>
-    </a>
-    <a href="https://hemingwayapp.com" class="link-button">
+      </a>
+      <a href="https://hemingwayapp.com" class="link-button">
         <span class="link-title">Hemingway</span>
         <span class="link-subtitle">For writing task to check your text</span>
-    </a>
-    <a href="https://vidu.com" class="link-button">
+      </a>
+      <a href="https://vidu.com" class="link-button">
         <span class="link-title">Vidu</span>
         <span class="link-subtitle">For creating AI videos</span>
-    </a>
-    <a href="https://trickle.so" class="link-button">
+      </a>
+      <a href="https://trickle.so" class="link-button">
         <span class="link-title">Trickle</span>
         <span class="link-subtitle">Screenshot to Notes using AI</span>
-    </a>
-    <a href="https://invideo.io/ai/" class="link-button">
+      </a>
+      <a href="https://invideo.io/ai/" class="link-button">
         <span class="link-title">Invideo</span>
         <span class="link-subtitle">Create full-length videos using AI</span>
-    </a>
-    <a href="https://www.wolframalpha.com/" class="link-button">
-      <span class="link-title">Wolfram Alpha</span>
-      <span class="link-subtitle">Learn step by step in e.g. Math</span>
-    </a>
-    <a href="https://studyfetch.com/" class="link-button">
-      <span class="link-title">Studyfetch</span>
-      <span class="link-subtitle">For studying</span>
-    </a>
-    <a href="https://www.247roulette.org/" class="link-button">
-      <span class="link-title">Roulette</span>
-      <span class="link-subtitle">Free Gambling!!</span>
-    </a>
-    <a href="https://www.247blackjack.com/" class="link-button">
-      <span class="link-title">Blackjack</span>
-      <span class="link-subtitle">Free Gambling!!</span>
-    </a>
-    <a href="https://www.neal.fun" class="link-button">
-      <span class="link-title">Neal.Fun</span>
-      <span class="link-subtitle">Lot of Random Websites and games</span>
-    </a>
-    <a href="https://clicktheredbutton.com/" class="link-button">
+      </a>
+      <a href="https://www.wolframalpha.com/" class="link-button">
+        <span class="link-title">Wolfram Alpha</span>
+        <span class="link-subtitle">Learn step by step in fx. Math</span>
+      </a>
+      <a href="https://studyfetch.com/" class="link-button">
+        <span class="link-title">Studyfetch</span>
+        <span class="link-subtitle">For studying</span>
+      </a>
+      <a href="https://www.247roulette.org/" class="link-button">
+        <span class="link-title">Roulette</span>
+        <span class="link-subtitle">Free Gambling!!</span>
+      </a>
+      <a href="https://www.247blackjack.com/" class="link-button">
+        <span class="link-title">Blackjack</span>
+        <span class="link-subtitle">Free Gambling!!</span>
+      </a>
+      <a href="https://www.neal.fun" class="link-button">
+        <span class="link-title">Neal.Fun</span>
+        <span class="link-subtitle">Lot of Random Websites and games</span>
+      </a>
+      <a href="https://clicktheredbutton.com/" class="link-button">
         <span class="link-title">Click The Red Button</span>
         <span class="link-subtitle">If you are bored</span>
       </a>
-    <a href="https://worldguessr.com/" class="link-button">
+      <a href="https://worldguessr.com/" class="link-button">
         <span class="link-title">WorldGuessr</span>
         <span class="link-subtitle">Geoguesser</span>
       </a>
+    </div>
   </main>
 
   <footer>
     &copy; 2025 Thor Asplund (thor.asplund@outlook.dk)
   </footer>
+
   <script>
-  const searchInput = document.getElementById('searchInput');
-  const linkButtons = document.querySelectorAll('.link-button');
+    const searchInput = document.getElementById('searchInput');
+    const linkButtons = document.querySelectorAll('.link-button');
 
-  searchInput.addEventListener('input', () => {
-    const query = searchInput.value.toLowerCase();
-    linkButtons.forEach(button => {
-      const title = button.querySelector('.link-title').textContent.toLowerCase();
-      const subtitle = button.querySelector('.link-subtitle').textContent.toLowerCase();
-      const match = title.includes(query) || subtitle.includes(query);
-      button.style.display = match ? 'flex' : 'none';
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase();
+      linkButtons.forEach(button => {
+        const title = button.querySelector('.link-title').textContent.toLowerCase();
+        const subtitle = button.querySelector('.link-subtitle').textContent.toLowerCase();
+        const match = title.includes(query) || subtitle.includes(query);
+        button.style.display = match ? 'flex' : 'none';
+      });
     });
-  });
-</script>
-
+  </script>
 </body>
 </html>
