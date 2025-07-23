@@ -7,6 +7,24 @@
   <title>Link Hub</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    #searchInput {
+    width: 100%;
+    max-width: 420px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid #333;
+   background-color: #1a1a1a;
+    color: var(--text-color);
+   font-size: 1rem;
+   transition: border-color 0.2s ease;
+    }
+
+  #searchInput:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
     :root {
       --bg-color: #0d0d0d;
       --text-color: #eaeaea;
@@ -133,6 +151,7 @@
   </header>
 
   <main>
+    <input type="text" id="searchInput" placeholder="Search links..." />
     <a href="https://chatgpt.com/" class="link-button">
         <span class="link-title">ChatGpt</span>
         <span class="link-subtitle">THE best AI tool out there right now</span>
@@ -162,6 +181,10 @@
         <span class="link-title">Leonardo AI</span>
         <span class="link-subtitle">Image Creator</span>
     </a>
+    <a href="https://recraft.ai/" class="link-button">
+        <span class="link-title">Recraft Ai</span>
+        <span class="link-subtitle">Image Generation tool</span>
+    </a>
     <a href="https://10015.io/" class="link-button">
         <span class="link-title">10015</span>
         <span class="link-subtitle">Just a lot of online tools</span>
@@ -176,7 +199,7 @@
     </a>
     <a href="https://vidu.com" class="link-button">
         <span class="link-title">Vidu</span>
-        <span class="link-subtitle">For creationg AI videos</span>
+        <span class="link-subtitle">For creating AI videos</span>
     </a>
     <a href="https://trickle.so" class="link-button">
         <span class="link-title">Trickle</span>
@@ -188,7 +211,7 @@
     </a>
     <a href="https://www.wolframalpha.com/" class="link-button">
       <span class="link-title">Wolfram Alpha</span>
-      <span class="link-subtitle">Learn step by step in fx. Math</span>
+      <span class="link-subtitle">Learn step by step in e.g. Math</span>
     </a>
     <a href="https://studyfetch.com/" class="link-button">
       <span class="link-title">Studyfetch</span>
@@ -219,5 +242,20 @@
   <footer>
     &copy; 2025 Thor Asplund (thor.asplund@outlook.dk)
   </footer>
+  <script>
+  const searchInput = document.getElementById('searchInput');
+  const linkButtons = document.querySelectorAll('.link-button');
+
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase();
+    linkButtons.forEach(button => {
+      const title = button.querySelector('.link-title').textContent.toLowerCase();
+      const subtitle = button.querySelector('.link-subtitle').textContent.toLowerCase();
+      const match = title.includes(query) || subtitle.includes(query);
+      button.style.display = match ? 'flex' : 'none';
+    });
+  });
+</script>
+
 </body>
 </html>
