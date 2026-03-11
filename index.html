@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Thor Erik A</title>
+<title>A Webpage</title>
 <style>
 body{
   margin:0;
   font-family:Arial,sans-serif;
   overflow:hidden;
   height:100vh;
-  background:black;
   color:white;
 }
 
@@ -28,11 +27,12 @@ h1{
   color:white;
 }
 
+/* Links styling */
 .links a{
   display:inline-block;
   margin:10px;
   padding:12px 25px;
-  background: rgba(255,255,255,0.1);
+  background: rgba(0,0,0,0.3); /* darker than before */
   border-radius:8px;
   text-decoration:none;
   color:white;
@@ -40,10 +40,27 @@ h1{
 }
 
 .links a:hover{
-  background: rgba(255,255,255,0.3);
+  background: rgba(0,0,0,0.5); /* slightly darker on hover */
   transform:scale(1.1);
 }
 
+/* Simple search bar */
+.search-form input {
+  padding: 12px 20px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  width: 300px;
+  background: #7b95e4;
+  color: #f2ecf8;
+}
+
+.search-form input::placeholder {
+  color: #f3a5fe;
+}
+
+/* Canvas for gradient */
 #bgCanvas{
   position:fixed;
   top:0;
@@ -60,59 +77,47 @@ h1{
 <canvas id="bgCanvas"></canvas>
 
 <div class="container">
-<h1>Thor Erik A</h1>
-<div class="links">
-  <a href="/about/">About</a>
-  <a href="/tools/">Tools</a>
-</div>
+  <h1>A Website</h1>
+
+  <!-- Simple Google Search Form -->
+  <form class="search-form" action="https://www.google.com/search" method="GET" target="_blank">
+    <input type="text" name="q" placeholder="Search Google...">
+  </form>
+
+  <div class="links">
+    <a href="/about/">About</a>
+    <a href="/tools/">Tools</a>
+  </div>
 </div>
 
 <script>
-// ===== Blob gradient background =====
+// Linear gradient background animation
 const canvas = document.getElementById("bgCanvas");
 const ctx = canvas.getContext("2d");
+
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 const colors = ["#f57277","#7b95e4","#9b8cf3","#f2ecf8","#f3a5fe"];
-const blobs = [];
+let gradientAngle = 0;
 
-// create 10 blobs
-for(let i=0;i<10;i++){
-  blobs.push({
-    x: Math.random()*canvas.width,
-    y: Math.random()*canvas.height,
-    r: Math.random()*200+150,
-    color: colors[i%colors.length],
-    dx: (Math.random()-0.5)*0.3,
-    dy: (Math.random()-0.5)*0.3
-  });
+function drawGradient(){
+  const grad = ctx.createLinearGradient(
+    0, 0,
+    canvas.width*Math.cos(gradientAngle),
+    canvas.height*Math.sin(gradientAngle)
+  );
+  for(let i=0;i<colors.length;i++){
+    grad.addColorStop(i/(colors.length-1), colors[i]);
+  }
+  ctx.fillStyle = grad;
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  gradientAngle += 0.002;
+  requestAnimationFrame(drawGradient);
 }
 
-function animate(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  
-  // draw each blob as radial gradient
-  blobs.forEach(b=>{
-    b.x += b.dx;
-    b.y += b.dy;
-
-    // bounce off edges
-    if(b.x-b.r<0 || b.x+b.r>canvas.width) b.dx*=-1;
-    if(b.y-b.r<0 || b.y+b.r>canvas.height) b.dy*=-1;
-
-    const grad = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r);
-    grad.addColorStop(0,b.color);
-    grad.addColorStop(1,'transparent');
-    
-    ctx.fillStyle = grad;
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-  });
-
-  requestAnimationFrame(animate);
-}
-
-animate();
+drawGradient();
 
 window.addEventListener('resize',()=>{
   canvas.width = window.innerWidth;
