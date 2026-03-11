@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>A Webpage</title>
+<title>Thor Erik A</title>
 <style>
-/* ===== Styles ===== */
+/* ===== Styles with your palette ===== */
 body{
   margin:0;
-  font-family:Arial;
-  background:black;
-  color:white;
+  font-family:Arial, sans-serif;
+  background:#011731; /* darkest */
+  color:#82A3A1; /* light accent text */
   overflow:hidden;
 }
 .container{
@@ -23,6 +23,7 @@ body{
 h1{
   font-size:60px;
   margin-bottom:30px;
+  color:#9FC490; /* headline accent */
 }
 .search{
   width:400px;
@@ -30,6 +31,11 @@ h1{
   font-size:18px;
   border-radius:10px;
   border:none;
+  background:#24364C;
+  color:#82A3A1;
+}
+.search::placeholder{
+  color:#465362;
 }
 .links{
   margin-top:40px;
@@ -38,15 +44,18 @@ h1{
   display:inline-block;
   margin:10px;
   padding:12px 25px;
-  background:#111;
+  background:#24364C;
   border-radius:8px;
   text-decoration:none;
-  color:white;
-  transition:0.2s;
+  color:#82A3A1;
+  transition:0.3s;
+  box-shadow:0 0 5px #011936;
 }
 .links a:hover{
-  background:#333;
+  background:#465362;
+  color:#9FC490;
   transform:scale(1.1);
+  box-shadow:0 0 15px #82A3A1;
 }
 canvas{
   position:fixed;
@@ -60,7 +69,7 @@ canvas{
 <body>
 
 <div class="container">
-  <h1>The Website</h1>
+  <h1>Thor Erik A</h1>
 
   <!-- Google search -->
   <form action="https://www.google.com/search" method="GET">
@@ -77,20 +86,23 @@ canvas{
 <canvas id="bg"></canvas>
 
 <script>
-// ===== Script =====
+// ===== Script with colored particles =====
 const canvas = document.getElementById("bg");
 const ctx = canvas.getContext("2d");
-
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+const colors = ["#011936","#24364C","#465362","#82A3A1","#9FC490"];
 let particles = [];
-for(let i=0;i<100;i++){
+
+for(let i=0;i<150;i++){
   particles.push({
     x:Math.random()*canvas.width,
     y:Math.random()*canvas.height,
     vx:(Math.random()-0.5)*1,
-    vy:(Math.random()-0.5)*1
+    vy:(Math.random()-0.5)*1,
+    color: colors[Math.floor(Math.random()*colors.length)],
+    size: Math.random()*3+1
   });
 }
 
@@ -108,8 +120,8 @@ function animate(){
     if(p.y>canvas.height)p.y=0;
 
     ctx.beginPath();
-    ctx.arc(p.x,p.y,2,0,Math.PI*2);
-    ctx.fillStyle="white";
+    ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+    ctx.fillStyle=p.color;
     ctx.fill();
   });
 
@@ -118,7 +130,6 @@ function animate(){
 
 animate();
 
-// optional: resize canvas on window resize
 window.addEventListener('resize',()=>{
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
