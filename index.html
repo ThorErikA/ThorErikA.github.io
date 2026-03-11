@@ -2,16 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>A Webpage</title>
+<title>Thor Erik A</title>
 <style>
-/* ===== Styles with your palette ===== */
 body{
   margin:0;
-  font-family:Arial, sans-serif;
-  background:#011731; /* darkest */
-  color:#82A3A1; /* light accent text */
+  font-family:Arial,sans-serif;
   overflow:hidden;
+  height:100vh;
+  background: black;
+  color:white;
 }
+
 .container{
   position:absolute;
   top:50%;
@@ -20,47 +21,35 @@ body{
   text-align:center;
   z-index:10;
 }
+
 h1{
   font-size:60px;
   margin-bottom:30px;
-  color:#9FC490; /* headline accent */
+  color:white;
 }
-.search{
-  width:400px;
-  padding:15px;
-  font-size:18px;
-  border-radius:10px;
-  border:none;
-  background:#000000;
-  color:#82A3A1;
-}
-.search::placeholder{
-  color:#000000;
-}
-.links{
-  margin-top:40px;
-}
+
 .links a{
   display:inline-block;
   margin:10px;
   padding:12px 25px;
-  background:#24364C;
+  background: rgba(255,255,255,0.1);
   border-radius:8px;
   text-decoration:none;
-  color:#82A3A1;
+  color:white;
   transition:0.3s;
-  box-shadow:0 0 5px #011936;
 }
+
 .links a:hover{
-  background:#465362;
-  color:#9FC490;
+  background: rgba(255,255,255,0.3);
   transform:scale(1.1);
-  box-shadow:0 0 15px #82A3A1;
 }
-canvas{
+
+#bgCanvas{
   position:fixed;
   top:0;
   left:0;
+  width:100%;
+  height:100%;
   z-index:0;
 }
 </style>
@@ -68,67 +57,40 @@ canvas{
 
 <body>
 
+<canvas id="bgCanvas"></canvas>
+
 <div class="container">
-  <h1>A Website</h1>
-
-  <!-- Google search -->
-  <form action="https://www.google.com/search" method="GET">
-    <input class="search" type="text" name="q" placeholder="Search Google...">
-  </form>
-
-  <!-- Navigation -->
-  <div class="links">
-    <a href="/about/">About</a>
-    <a href="/tools/">Tools</a>
-  </div>
+<h1>Thor Erik A</h1>
+<div class="links">
+  <a href="/about/">About</a>
+  <a href="/tools/">Tools</a>
+</div>
 </div>
 
-<canvas id="bg"></canvas>
-
 <script>
-// ===== Script with colored particles =====
-const canvas = document.getElementById("bg");
+// Gradient animation
+const canvas = document.getElementById("bgCanvas");
 const ctx = canvas.getContext("2d");
+
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const colors = ["#011936","#24364C","#465362","#82A3A1","#9FC490"];
-let particles = [];
+const colors = ["#011731","#011936","#24364C","#465362","#82A3A1","#9FC490","#FF6B6B","#FFB56B","#6BFFB5"]; // black + example colors from gradient image
+let gradientAngle = 0;
 
-for(let i=0;i<150;i++){
-  particles.push({
-    x:Math.random()*canvas.width,
-    y:Math.random()*canvas.height,
-    vx:(Math.random()-0.5)*1,
-    vy:(Math.random()-0.5)*1,
-    color: colors[Math.floor(Math.random()*colors.length)],
-    size: Math.random()*3+1
-  });
+function drawGradient(){
+  const grad = ctx.createLinearGradient(0,0,canvas.width*Math.cos(gradientAngle),canvas.height*Math.sin(gradientAngle));
+  for(let i=0;i<colors.length;i++){
+    grad.addColorStop(i/(colors.length-1),colors[i]);
+  }
+  ctx.fillStyle = grad;
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  gradientAngle += 0.002;
+  requestAnimationFrame(drawGradient);
 }
 
-function animate(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-
-  particles.forEach(p=>{
-    p.x+=p.vx;
-    p.y+=p.vy;
-
-    // wrap around edges
-    if(p.x<0)p.x=canvas.width;
-    if(p.x>canvas.width)p.x=0;
-    if(p.y<0)p.y=canvas.height;
-    if(p.y>canvas.height)p.y=0;
-
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
-    ctx.fillStyle=p.color;
-    ctx.fill();
-  });
-
-  requestAnimationFrame(animate);
-}
-
-animate();
+drawGradient();
 
 window.addEventListener('resize',()=>{
   canvas.width = window.innerWidth;
