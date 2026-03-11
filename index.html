@@ -1,20 +1,129 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Thor Erik A</title>
+<style>
+/* ===== Styles ===== */
+body{
+  margin:0;
+  font-family:Arial;
+  background:black;
+  color:white;
+  overflow:hidden;
+}
+.container{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  z-index:10;
+}
+h1{
+  font-size:60px;
+  margin-bottom:30px;
+}
+.search{
+  width:400px;
+  padding:15px;
+  font-size:18px;
+  border-radius:10px;
+  border:none;
+}
+.links{
+  margin-top:40px;
+}
+.links a{
+  display:inline-block;
+  margin:10px;
+  padding:12px 25px;
+  background:#111;
+  border-radius:8px;
+  text-decoration:none;
+  color:white;
+  transition:0.2s;
+}
+.links a:hover{
+  background:#333;
+  transform:scale(1.1);
+}
+canvas{
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:0;
+}
+</style>
 </head>
 
 <body>
 
-<h1>Thor Erik A</h1>
+<div class="container">
+  <h1>Thor Erik A</h1>
 
-<p>Welcome to my site.</p>
+  <!-- Google search -->
+  <form action="https://www.google.com/search" method="GET">
+    <input class="search" type="text" name="q" placeholder="Search Google...">
+  </form>
 
-<ul>
-<li><a href="/about/">About Me</a></li>
-<li><a href="/tools/">Tools</a></li>
-</ul>
+  <!-- Navigation -->
+  <div class="links">
+    <a href="/about/">About</a>
+    <a href="/tools/">Tools</a>
+  </div>
+</div>
+
+<canvas id="bg"></canvas>
+
+<script>
+// ===== Script =====
+const canvas = document.getElementById("bg");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+for(let i=0;i<100;i++){
+  particles.push({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    vx:(Math.random()-0.5)*1,
+    vy:(Math.random()-0.5)*1
+  });
+}
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  particles.forEach(p=>{
+    p.x+=p.vx;
+    p.y+=p.vy;
+
+    // wrap around edges
+    if(p.x<0)p.x=canvas.width;
+    if(p.x>canvas.width)p.x=0;
+    if(p.y<0)p.y=canvas.height;
+    if(p.y>canvas.height)p.y=0;
+
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,2,0,Math.PI*2);
+    ctx.fillStyle="white";
+    ctx.fill();
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+// optional: resize canvas on window resize
+window.addEventListener('resize',()=>{
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+</script>
 
 </body>
 </html>
