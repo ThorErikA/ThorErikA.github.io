@@ -1,1 +1,18 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Fishing</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+<h1>Fishing Log</h1>
+
+<a href="/">Home</a>
+
+<p>This is the fishing page.</p>
+
+</body>
+</html>
